@@ -15,6 +15,20 @@ addBtn.addEventListener('click', function (e) {
     localStorage.setItem('notes', JSON.stringify(notesObj));
     addTxt.value = "";
     console.log(notesObj);
+    // showNotes();
+
+    let addTitleTxt = document.getElementById('addTitleTxt');
+    let title = localStorage.getItem("title");
+    if (title == null) {
+        titleObj = [];
+    }
+    else {
+        titleObj = JSON.parse(title);
+    }
+    titleObj.push(addTitleTxt.value);
+    localStorage.setItem('title', JSON.stringify(titleObj));
+    addTitleTxt.value = "";
+    console.log(titleObj);
     showNotes();
 })
 
@@ -28,12 +42,20 @@ function showNotes() {
     else {
         notesObj = JSON.parse(notes);
     }
+
+    let title = localStorage.getItem("title");
+    if (title == null) {
+        titleObj = [];
+    }
+    else {
+        titleObj = JSON.parse(title);
+    }
     let str = "";
     notesObj.forEach(function (element, index) {
         str = str + `
         <div class=" noteCard my-2 mx-1 card" style="width: 14rem;">
             <div class="card-body">
-                <h6 class="card-title">Note${index + 1}</h6>
+                <h6 class="card-title">${titleObj[index]}</h6>
                 <p class="card-text" id="card-id" >${element}</p>
                 <button id="${index}" onclick = "deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
             </div>
@@ -59,24 +81,34 @@ function deleteNote(index) {
     else {
         notesObj = JSON.parse(notes);
     }
-
     notesObj.splice(index, 1);
     localStorage.setItem("notes", JSON.stringify(notesObj));
+
+    let title = localStorage.getItem("title");
+    if (title == null) {
+        titleObj = [];
+    }
+    else {
+        titleObj = JSON.parse(title);
+    }
+    titleObj.splice(index,1)
+    localStorage.setItem('title',JSON.stringify(titleObj));
     showNotes();
 }
 
 // Search Bar Code
 
 let search = document.getElementById('searchtxt');
-search.addEventListener("input", function() {
+search.addEventListener("input", function () {
     let inputVal = search.value;
     let noteCards = document.getElementsByClassName("noteCard");
-    Array.from(noteCards).forEach(function(element) {
+    Array.from(noteCards).forEach(function (element) {
 
         let cardTxt = element.getElementsByTagName('p')[0].innerText;
+        let TITLETXT = element.getElementsByTagName('h6')[0].innerText;
         // console.log(cardTxt)
 
-        if (cardTxt.includes(inputVal)) {
+        if (cardTxt.includes(inputVal)|| (TITLETXT.includes(inputVal))) {
             element.style.display = 'block';
         }
         else {
