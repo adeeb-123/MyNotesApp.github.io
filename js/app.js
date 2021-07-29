@@ -15,7 +15,7 @@ addBtn.addEventListener('click', function (e) {
     localStorage.setItem('notes', JSON.stringify(notesObj));
     addTxt.value = "";
     console.log(notesObj);
-    // showNotes();
+    showNotes();
 
     let addTitleTxt = document.getElementById('addTitleTxt');
     let title = localStorage.getItem("title");
@@ -29,6 +29,24 @@ addBtn.addEventListener('click', function (e) {
     localStorage.setItem('title', JSON.stringify(titleObj));
     addTitleTxt.value = "";
     console.log(titleObj);
+
+    let TIME = new Date();
+    let hrs = TIME.getHours();
+    let min = TIME.getMinutes();
+    let sec = TIME.getSeconds();
+    let fulltime = hrs + ':' + min + ':' + sec
+    // console.log(fulltime)
+
+    let time = localStorage.getItem('TIME')
+    if (time == null) {
+        a = [];
+    }
+    else {
+        a = JSON.parse(time)
+    }
+    a.push(fulltime)
+    localStorage.setItem('TIME', JSON.stringify(a))
+    console.log(a)
     showNotes();
 })
 
@@ -50,6 +68,22 @@ function showNotes() {
     else {
         titleObj = JSON.parse(title);
     }
+
+    let TIME = new Date();
+    let hrs = TIME.getHours();
+    let min = TIME.getMinutes();
+    let sec = TIME.getSeconds();
+    let fulltime = hrs + ':' + min + ':' + sec
+    // console.log(fulltime)
+
+    let time = localStorage.getItem('TIME')
+    if (time == null) {
+        a = [];
+    }
+    else {
+        a = JSON.parse(time)
+    }
+
     let str = "";
     notesObj.forEach(function (element, index) {
         str = str + `
@@ -58,6 +92,10 @@ function showNotes() {
                 <h6 class="card-title">${titleObj[index]}</h6>
                 <p class="card-text" id="card-id" >${element}</p>
                 <button id="${index}" onclick = "deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
+            </div>
+            <div class="new_section" style = "display:flex;justify-content: space-between">
+                <p id="time_box" style = "color:red;">Time :-${a[index]}</p>
+                <img src = "images/white_star.png" id="image" width = "20px" style="height:20px;align-self:center;box-shadow: 1px 2px gray; cursor:pointer;">
             </div>
         </div>`;
 
@@ -91,8 +129,25 @@ function deleteNote(index) {
     else {
         titleObj = JSON.parse(title);
     }
-    titleObj.splice(index,1)
-    localStorage.setItem('title',JSON.stringify(titleObj));
+    titleObj.splice(index, 1)
+    localStorage.setItem('title', JSON.stringify(titleObj));
+
+    let TIME = new Date();
+    let hrs = TIME.getHours();
+    let min = TIME.getMinutes();
+    let sec = TIME.getSeconds();
+    let fulltime = hrs + ':' + min + ':' + sec
+    // console.log(fulltime)
+
+    let time = localStorage.getItem('TIME')
+    if (time == null) {
+        a = [];
+    }
+    else {
+        a = JSON.parse(time)
+    }
+    a.splice(index, 1)
+    localStorage.setItem('TIME', JSON.stringify(a))
     showNotes();
 }
 
@@ -108,7 +163,7 @@ search.addEventListener("input", function () {
         let TITLETXT = element.getElementsByTagName('h6')[0].innerText;
         // console.log(cardTxt)
 
-        if (cardTxt.includes(inputVal)|| (TITLETXT.includes(inputVal))) {
+        if (cardTxt.includes(inputVal) || (TITLETXT.includes(inputVal))) {
             element.style.display = 'block';
         }
         else {
@@ -117,3 +172,17 @@ search.addEventListener("input", function () {
         }
     });
 })
+
+
+// Logic to Change the image of start from white to red when clicks on it
+let img_change = document.getElementById('image')
+img_change.addEventListener('click', function () {
+    if(img_change.src.match("images/red_star.png")){
+        img_change.src = "images/white_star.png"
+    }
+    else{
+        img_change.src = "images/red_star.png"
+        console.log("hiashdiashi")
+    }
+})
+
