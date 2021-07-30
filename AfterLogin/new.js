@@ -232,5 +232,5 @@ function success_signout() {
     setTimeout(backtohome, 2000);
 }
 function backtohome(){
-    location.href = "https://adeeb-123.github.io/MyNotesApp.github.io/index.html
+    location.href = "https://adeeb-123.github.io/MyNotesApp.github.io/index.html"
 }
