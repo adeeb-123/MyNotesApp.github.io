@@ -50,14 +50,14 @@ addBtn.addEventListener('click', function (e) {
     console.log(a)
 
     let importance = localStorage.getItem('importance')
-    if(importance == null){
+    if (importance == null) {
         imp_array = []
     }
-    else{
+    else {
         imp_array = JSON.parse(importance)
     }
     imp_array.push(command)
-    localStorage.setItem('importance',JSON.stringify(imp_array))
+    localStorage.setItem('importance', JSON.stringify(imp_array))
     console.log(importance)
 
     showNotes();
@@ -98,10 +98,10 @@ function showNotes() {
     }
 
     let importance = localStorage.getItem('importance')
-    if(importance == null){
+    if (importance == null) {
         imp_array = []
     }
-    else{
+    else {
         imp_array = JSON.parse(importance)
     }
 
@@ -171,14 +171,14 @@ function deleteNote(index) {
     localStorage.setItem('TIME', JSON.stringify(a))
 
     let importance = localStorage.getItem('importance')
-    if(importance == null){
+    if (importance == null) {
         imp_array = []
     }
-    else{
+    else {
         imp_array = JSON.parse(importance)
     }
-    imp_array.splice(index,1)
-    localStorage.setItem('importance',JSON.stringify(imp_array))
+    imp_array.splice(index, 1)
+    localStorage.setItem('importance', JSON.stringify(imp_array))
 
     showNotes();
 }
@@ -218,13 +218,13 @@ search.addEventListener("input", function () {
 //     }
 // })
 
-function ImpMark(index){
+function ImpMark(index) {
 
     let importance = localStorage.getItem('importance')
-    if(importance == null){
+    if (importance == null) {
         imp_array = []
     }
-    else{
+    else {
         imp_array = JSON.parse(importance)
     }
 
@@ -247,15 +247,51 @@ function signup() {
 
     if (Username && email && password != "") {
 
-        alert("SignUp successfully")
-        window.location.href = "index.html"
+        // alert("SignUp successfully")
+        success()
+        sendmail(Username, email, password)
+        setTimeout(backtohomepage, 3000);
     }
     else {
-        alert("Fill The Form !!!!!")
+        // alert("Fill The Form !!!!!")
+        error()
+        
     }
 }
 
-function cancelSignup(){
+function success() {
+    swal({
+        // title: "Good Job!",
+        text: "Email Sent Successfully",
+        icon: "success",
+        button: "OK",
+
+    });
+}
+
+function backtohomepage(){
+    window.location.href = "index.html"
+}
+function error() {
+    swal({
+        // title: "Good Job!",
+        text: "Something Went Wrong , TRY AGAIN !! ",
+        icon: "error",
+        button: "OK",
+
+    });
+}
+
+
+function sendmail(Username, email, password) {
+    emailjs.send("service_3h5y79h", "template_v4xihew", {
+        Username: Username,
+        email: email,
+        password: password,
+    });
+}
+
+function cancelSignup() {
     window.location.href = "index.html"
 }
 
@@ -279,6 +315,6 @@ function login() {
     }
 }
 
-function cancelLogin(){
+function cancelLogin() {
     window.location.href = "index.html"
 }
