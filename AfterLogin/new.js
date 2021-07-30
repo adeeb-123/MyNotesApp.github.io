@@ -232,5 +232,5 @@ function success_signout() {
     setTimeout(backtohome, 2000);
 }
 function backtohome(){
-    window.location.href = "/index.html"
+    window.location.href = "index.html"
 }
