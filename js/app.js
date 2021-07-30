@@ -1,4 +1,5 @@
 console.log("Welcome to Notes app ")
+let command = "white"
 showNotes();
 // If user clicks on the Add note button
 let addBtn = document.getElementById("addBtn");
@@ -47,6 +48,18 @@ addBtn.addEventListener('click', function (e) {
     a.push(fulltime)
     localStorage.setItem('TIME', JSON.stringify(a))
     console.log(a)
+
+    let importance = localStorage.getItem('importance')
+    if(importance == null){
+        imp_array = []
+    }
+    else{
+        imp_array = JSON.parse(importance)
+    }
+    imp_array.push(command)
+    localStorage.setItem('importance',JSON.stringify(imp_array))
+    console.log(importance)
+
     showNotes();
 })
 
@@ -84,6 +97,14 @@ function showNotes() {
         a = JSON.parse(time)
     }
 
+    let importance = localStorage.getItem('importance')
+    if(importance == null){
+        imp_array = []
+    }
+    else{
+        imp_array = JSON.parse(importance)
+    }
+
     let str = "";
     notesObj.forEach(function (element, index) {
         str = str + `
@@ -95,7 +116,7 @@ function showNotes() {
             </div>
             <div class="new_section" style = "display:flex;justify-content: space-between">
                 <p id="time_box" style = "color:red;">Time :-${a[index]}</p>
-                <img src = "images/white_star.png" id="image" width = "20px" style="height:20px;align-self:center;box-shadow: 1px 2px gray; cursor:pointer;">
+                <img src = "images/${command}_star.png" id="${index}" onclick="ImpMark(this.id)" width = "20px" style="height:20px;align-self:center;box-shadow: 1px 2px gray; cursor:pointer;">
             </div>
         </div>`;
 
@@ -148,6 +169,17 @@ function deleteNote(index) {
     }
     a.splice(index, 1)
     localStorage.setItem('TIME', JSON.stringify(a))
+
+    let importance = localStorage.getItem('importance')
+    if(importance == null){
+        imp_array = []
+    }
+    else{
+        imp_array = JSON.parse(importance)
+    }
+    imp_array.splice(index,1)
+    localStorage.setItem('importance',JSON.stringify(imp_array))
+
     showNotes();
 }
 
@@ -174,15 +206,79 @@ search.addEventListener("input", function () {
 })
 
 
-// Logic to Change the image of start from white to red when clicks on it
-let img_change = document.getElementById('image')
-img_change.addEventListener('click', function () {
-    if(img_change.src.match("images/red_star.png")){
-        img_change.src = "images/white_star.png"
+// // Logic to Change the image of start from white to red when clicks on it
+// let img_change = document.getElementById('image')
+// img_change.addEventListener('click', function () {
+//     if(img_change.src.match("images/red_star.png")){
+//         img_change.src = "images/white_star.png"
+//     }
+//     else{
+//         img_change.src = "images/red_star.png"
+//         console.log("hiashdiashi")
+//     }
+// })
+
+function ImpMark(index){
+
+    let importance = localStorage.getItem('importance')
+    if(importance == null){
+        imp_array = []
     }
     else{
-        img_change.src = "images/red_star.png"
-        console.log("hiashdiashi")
+        imp_array = JSON.parse(importance)
     }
-})
 
+    imp_array[index].command = 'red'
+}
+
+
+
+
+// Here It's Starts For the Login and Signup Logic
+
+function signup() {
+    let Username = document.getElementById('Username').value
+    let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
+
+    localStorage.setItem('Username', Username)
+    localStorage.setItem('email', email)
+    localStorage.setItem('password', password)
+
+    if (Username && email && password != "") {
+
+        alert("SignUp successfully")
+        window.location.href = "index.html"
+    }
+    else {
+        alert("Fill The Form !!!!!")
+    }
+}
+
+function cancelSignup(){
+    window.location.href = "index.html"
+}
+
+
+function login() {
+    let Username = document.getElementById('username').value
+    let Password = document.getElementById('password').value
+
+    console.log(Username)
+    console.log(Password)
+
+    let local_username = localStorage.getItem('Username')
+    let local_password = localStorage.getItem('password')
+
+    if (Username == local_username && Password == local_password) {
+        window.location.href = "index.html"
+    }
+    else {
+        alert("Invalid Credentials !! ")
+        password.value = ""
+    }
+}
+
+function cancelLogin(){
+    window.location.href = "index.html"
+}
