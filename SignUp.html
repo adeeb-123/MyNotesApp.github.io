@@ -125,5 +125,39 @@
 
 </body>
 <script src="js/app.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+	<script type="text/javascript">
+		(function () {
+			emailjs.init("user_Qg5gIZBQsoGFhRIwVfGJX");
+		})();
+	</script>
+
+	<!-- Sweet custom alert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		// User ID   user_Qg5gIZBQsoGFhRIwVfGJX
+		// Access Token    8e89cbda52180c612abbd3f41c23db17
+
+		function success() {
+			swal({
+				// title: "Good Job!",
+				text: "Sign-Up Successfully",
+				icon: "success",
+				button: "OK",
+
+			});
+		}
+
+		function error() {
+			swal({
+				// title: "Good Job!",
+				text: "Something Went Wrong , TRY AGAIN !! ",
+				icon: "error",
+				button: "OK",
+
+			});
+		}
+	</script>
+
 
 </html>
