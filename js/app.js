@@ -255,7 +255,7 @@ function signup() {
     else {
         // alert("Fill The Form !!!!!")
         error()
-        
+
     }
 }
 
@@ -269,7 +269,7 @@ function success() {
     });
 }
 
-function backtohomepage(){
+function backtohomepage() {
     window.location.href = "index.html"
 }
 function error() {
@@ -307,7 +307,8 @@ function login() {
     let local_password = localStorage.getItem('password')
 
     if (Username == local_username && Password == local_password) {
-        window.location.href = "index.html"
+        success()
+        setTimeout(gotonew_page, 2000);
     }
     else {
         alert("Invalid Credentials !! ")
@@ -317,4 +318,9 @@ function login() {
 
 function cancelLogin() {
     window.location.href = "index.html"
+}
+
+function gotonew_page() {
+    window.location.href = "AfterLogin/new_index.html"
+
 }
