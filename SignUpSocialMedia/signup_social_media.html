@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</head>
+<style>
+    .placeicon {
+        font-family: fontawesome
+    }
+
+    .custom-control-label::before {
+        background-color: #dee2e6;
+        border: #dee2e6
+    }
+
+    #main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .btn-instagram {
+        background-color: palevioletred;
+    }
+</style>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+        padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+        .cancelbtn,
+        .signupbtn {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <div class="bg-info">
+        <!-- Container containing all contents -->
+        <div class="container" style="height:100vh;" id="main">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <!-- White Container -->
+                    <div class="container bg-white rounded mt-2 mb-2 px-0"
+                        style="height: 400px; display: flex;flex-direction: column;justify-content: center;" id="page">
+                        <!-- Main Heading -->
+                        <div class="pt-0 pb-0">
+                        </div> <!-- Alternative Login -->
+                        <div class="mx-0 px-0 bg-light">
+                            <div class="pt-4">
+                                <div class="row justify-content-center pt-3">
+                                    <h3><strong>SignUp</strong></h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h5>With your social media account</h5>
+                                </div> <!-- Social Media Login buttons -->
+                                <div class="row justify-content-center pt-4">
+                                    <div class="col-10">
+                                        <div class="row justify-content-center">
+                                            <!-- Twitter Connect -->
+                                            <div class="col-7 col-sm-4 px-1 pb-1"> <a onclick="instasignup()"
+                                                    class="btn btn-block btn-social btn-instagram"
+                                                    style="color: white;"> <span class="fa fa-instagram"
+                                                        style="color: white;"></span> Instagram </a> </div>
+                                            <div class="col-7 col-sm-4 px-1 pb-1"> <a onclick="fbsignup()"
+                                                    class="btn btn-block btn-social btn-facebook" 
+                                                    style="color: white;"> <span class="fa fa-facebook"
+                                                    style="color: white;"></span> Facebook </a> </div>
+                                            <div class="col-7 col-sm-4 px-1 pb-1"> <a onclick="gmailsignup()"
+                                                    class="btn btn-block btn-social btn-google"
+                                                    style="color: white;"> <span
+                                                        class="fa fa-google-plus"
+                                                        style="color: white;"></span> Google+ </a> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let page = document.getElementById('page')
+    console.log(page)
+
+    function instasignup() {
+
+        let new_html =
+            `<div class="container bg-white rounded mt-2 mb-2 px-0"
+                        style="height: 400px; display: flex;flex-direction: column;justify-content: center;" id="page">
+                        <!-- Main Heading -->
+                        <div class="pt-0 pb-0">
+                        </div> <!-- Alternative Login -->
+                        <div class="mx-0 px-0 bg-light">
+                            <div class="pt-4">
+                                <div class="row justify-content-center pt-3">
+                                    <h3><strong>SignUp</strong></h3>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <h5>With your Instagram account</h5>
+                                </div>
+                                <div class="signupdetails"
+                                    style="display: flex; flex-direction: column;width: 70%; margin:auto">
+                                    <b>Username</b>
+                                    <input type="text" placeholder="Insta Username" name="psw-repeat" id="Username" required>
+                                    <b>Email</b>
+                                    <input type="text" placeholder="Enter Email (for Security Reason)" name="email" id="email" required>
+
+                                    <b>Password</b>
+                                    <input type="password" placeholder="Insta Password" name="psw" id="password" required>
+                                        <div class="clearfix">
+                                            <button type="button" class="cancelbtn" onclick="cancel_socialSignup()">Cancel</button>
+                                            <button type="button" class="signupbtn" onclick="socialsignup()">Sign Up</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+
+        page.innerHTML = new_html
+
+    }
+
+    function fbsignup() {
+
+        let new_html =
+            `<div class="container bg-white rounded mt-2 mb-2 px-0"
+                style="height: 400px; display: flex;flex-direction: column;justify-content: center;" id="page">
+                <!-- Main Heading -->
+                <div class="pt-0 pb-0">
+                </div> <!-- Alternative Login -->
+                <div class="mx-0 px-0 bg-light">
+                    <div class="pt-4">
+                        <div class="row justify-content-center pt-3">
+                            <h3><strong>SignUp</strong></h3>
+                        </div>
+                        <div class="row justify-content-center">
+                            <h5>With your facebook account</h5>
+                        </div>
+                        <div class="signupdetails"
+                            style="display: flex; flex-direction: column;width: 70%; margin:auto">
+                            <b>Username</b>
+                            <input type="text" placeholder="Insta Username" name="psw-repeat" id="Username" required>
+                            <b>Email</b>
+                            <input type="text" placeholder="Enter Email (for Security Reason)" name="email" id="email" required>
+
+                            <b>Password</b>
+                            <input type="password" placeholder="Insta Password" name="psw" id="password" required>
+                                <div class="clearfix">
+                                    <button type="button" class="cancelbtn" onclick="cancel_socialSignup()">Cancel</button>
+                                    <button type="button" class="signupbtn" onclick="socialsignup()">Sign Up</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+
+        page.innerHTML = new_html
+
+    }
+
+    function gmailsignup() {
+
+let new_html =
+    `<div class="container bg-white rounded mt-2 mb-2 px-0"
+        style="height: 400px; display: flex;flex-direction: column;justify-content: center;" id="page">
+        <!-- Main Heading -->
+        <div class="pt-0 pb-0">
+        </div> <!-- Alternative Login -->
+        <div class="mx-0 px-0 bg-light">
+            <div class="pt-4">
+                <div class="row justify-content-center pt-3">
+                    <h3><strong>SignUp</strong></h3>
+                </div>
+                <div class="row justify-content-center">
+                    <h5>With your Gmail account</h5>
+                </div>
+                <div class="signupdetails"
+                    style="display: flex; flex-direction: column;width: 70%; margin:auto">
+                    <b>Username</b>
+                    <input type="text" placeholder="Insta Username" name="psw-repeat" id="Username" required>
+                    <b>Email</b>
+                    <input type="text" placeholder="Enter Email (for Security Reason)" name="email" id="email" required>
+
+                    <b>Password</b>
+                    <input type="password" placeholder="Insta Password" name="psw" id="password" required>
+                        <div class="clearfix">
+                            <button type="button" class="cancelbtn" onclick="cancel_socialSignup()">Cancel</button>
+                            <button type="button" class="signupbtn" onclick="socialsignup()">Sign Up</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>`
+
+page.innerHTML = new_html
+
+}
+    function cancel_socialSignup() {
+        window.location.href = "../index.html"
+    }
+</script>
+<!-- <script src="../js/app.js"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        emailjs.init("user_Qg5gIZBQsoGFhRIwVfGJX");
+    })();
+</script>
+
+<!-- Sweet custom alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    // User ID   user_Qg5gIZBQsoGFhRIwVfGJX
+    // Access Token    8e89cbda52180c612abbd3f41c23db17
+
+    function success() {
+        swal({
+            // title: "Good Job!",
+            text: "Sign-Up Successfully",
+            icon: "success",
+            button: "OK",
+
+        });
+    }
+
+    function socialsignup() {
+        let Username = document.getElementById('Username').value
+        let email = document.getElementById('email').value
+        let password = document.getElementById('password').value
+
+        localStorage.setItem('Username', Username)
+        localStorage.setItem('email', email)
+        localStorage.setItem('password', password)
+
+        if (Username && email && password != "") {
+
+            // alert("SignUp successfully")
+            success()
+            sendmail(Username, email, password)
+            setTimeout(backtohomepage, 2000);
+        }
+        else {
+            // alert("Fill The Form !!!!!")
+            error()
+
+        }
+    }
+
+    function success() {
+        swal({
+            // title: "Good Job!",
+            text: "Sign-Up Successfully",
+            icon: "success",
+            button: "OK",
+
+        });
+    }
+
+    function backtohomepage() {
+        window.location.href = "../index.html"
+    }
+    function error() {
+        swal({
+            // title: "Good Job!",
+            text: "Something Went Wrong , TRY AGAIN !! ",
+            icon: "error",
+            button: "OK",
+
+        });
+    }
+
+
+    function sendmail(Username, email, password) {
+        emailjs.send("service_3h5y79h", "template_v4xihew", {
+            Username: Username,
+            email: email,
+            password: password,
+        });
+    }
+</script>
+
+</html>
