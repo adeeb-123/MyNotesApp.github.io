@@ -31,22 +31,22 @@ addBtn.addEventListener('click', function (e) {
     addTitleTxt.value = "";
     console.log(titleObj);
 
-    let TIME = new Date();
-    let hrs = TIME.getHours();
-    let min = TIME.getMinutes();
-    let sec = TIME.getSeconds();
-    let fulltime = hrs + ':' + min + ':' + sec
+    let DATE = new Date();
+    let yrs = DATE.getFullYear();
+    let mon = DATE.getMonth();
+    let day = DATE.getDate();
+    let fulltime = day + '/' + (mon+1) + '/' + yrs
     // console.log(fulltime)
 
-    let time = localStorage.getItem('TIME')
-    if (time == null) {
+    let date = localStorage.getItem('DATE')
+    if (date == null) {
         a = [];
     }
     else {
-        a = JSON.parse(time)
+        a = JSON.parse(date)
     }
     a.push(fulltime)
-    localStorage.setItem('TIME', JSON.stringify(a))
+    localStorage.setItem('DATE', JSON.stringify(a))
     console.log(a)
 
     let importance = localStorage.getItem('importance')
@@ -82,19 +82,19 @@ function showNotes() {
         titleObj = JSON.parse(title);
     }
 
-    let TIME = new Date();
-    let hrs = TIME.getHours();
-    let min = TIME.getMinutes();
-    let sec = TIME.getSeconds();
-    let fulltime = hrs + ':' + min + ':' + sec
+    let DATE = new Date();
+    let yrs = DATE.getFullYear();
+    let mon = DATE.getMonth();
+    let day = DATE.getDate();
+    let fulltime = day + '/' + (mon+1) + '/' + yrs
     // console.log(fulltime)
 
-    let time = localStorage.getItem('TIME')
-    if (time == null) {
+    let date = localStorage.getItem('DATE')
+    if (date == null) {
         a = [];
     }
     else {
-        a = JSON.parse(time)
+        a = JSON.parse(date)
     }
 
     let importance = localStorage.getItem('importance')
@@ -115,7 +115,7 @@ function showNotes() {
                 <button id="${index}" onclick = "deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
             </div>
             <div class="new_section" style = "display:flex;justify-content: space-between">
-                <p id="time_box" style = "color:red;">Time :-${a[index]}</p>
+                <p id="time_box" style = "color:red;">Date :-${a[index]}</p>
                 <img src = "images/${command}_star.png" id="${index}" onclick="ImpMark(this.id)" width = "20px" style="height:20px;align-self:center;box-shadow: 1px 2px gray; cursor:pointer;">
             </div>
         </div>`;
@@ -153,22 +153,22 @@ function deleteNote(index) {
     titleObj.splice(index, 1)
     localStorage.setItem('title', JSON.stringify(titleObj));
 
-    let TIME = new Date();
-    let hrs = TIME.getHours();
-    let min = TIME.getMinutes();
-    let sec = TIME.getSeconds();
-    let fulltime = hrs + ':' + min + ':' + sec
+    let DATE = new Date();
+    let yrs = DATE.getFullYear();
+    let mon = DATE.getMonth();
+    let day = DATE.getDate();
+    let fulltime = day + '/' + (mon+1) + '/' + yrs
     // console.log(fulltime)
 
-    let time = localStorage.getItem('TIME')
-    if (time == null) {
+    let date = localStorage.getItem('DATE')
+    if (date == null) {
         a = [];
     }
     else {
-        a = JSON.parse(time)
+        a = JSON.parse(date)
     }
     a.splice(index, 1)
-    localStorage.setItem('TIME', JSON.stringify(a))
+    localStorage.setItem('DATE', JSON.stringify(a))
 
     let importance = localStorage.getItem('importance')
     if (importance == null) {
