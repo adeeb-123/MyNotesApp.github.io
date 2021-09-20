@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 </head>
@@ -38,6 +39,17 @@
     .signupdropdown:hover .dropdown-contentsignup{
         display: block;
     }
+    .loc-icon{
+        animation: locanim 3s infinite;
+    }
+    @keyframes locanim{
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotateY(360deg);
+        }
+    }
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,13 +76,11 @@
                             </div>
                         </div>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" href="SignUp.html">Sign-Up</a>
-                    </li> -->
                 </ul>
-                <form class="d-flex">
+                <form class="d-flex" id="search_bar_id">
+                    <!-- <a class="nav-link active"><i class="fas fa-map-marker-alt loc-icon" style="color: white;"></i></a> -->
                     <input class="form-control me-2" id="searchtxt" type="search" placeholder="Search" aria-label="Search">
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                    
                 </form>
             </div>
         </div>
@@ -110,6 +120,16 @@
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
 <script>
+
+    function Locaticon() {
+        let search_bar_id = document.getElementById('search_bar_id')
+        search_bar_id.innerHTML = ` <form class="d-flex" id="search_bar_id">
+                    <a class="nav-link active"><i class="fas fa-map-marker-alt loc-icon" style="color: white;"></i></a>
+                    <input class="form-control me-2" id="searchtxt" type="search" placeholder="Search" aria-label="Search">
+                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                </form>`
+    }
+
     const apiKey = "f41b2c9cf49b4235b4d73520ae911ab7"
     const successCallBack = (position) =>{
         console.log(position)
@@ -123,13 +143,19 @@
             let allDetails = result.results[0].components;
             let {county , postcode , country} = allDetails;
             console.log(county , postcode , country)
+            console.log(result.results[0].components.city , result.results[0].components.country)
         })
+
+        Locaticon();
     }
     const errorCallBack = (error)=>{
         console.log(error)
+
     }
 
-    navigator.geolocation.getCurrentPosition(successCallBack , errorCallBack)
+    setTimeout(() => {
+        navigator.geolocation.getCurrentPosition(successCallBack , errorCallBack)
+    }, 3000);
 
     
     
